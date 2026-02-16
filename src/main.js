@@ -1,7 +1,7 @@
 // Nathan Altice
 // Created: 5/13/18
 // Ported to Phaser 3: 5/9/20
-// Updated: 1/13/24
+// Updated: 2/16/26
 // Dialoguing
 // Visual novel "teletext-style" dialog example that reads from a JSON file
 // Based on a dialog system implemented by UCSC student Tina Peng

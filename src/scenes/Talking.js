@@ -41,18 +41,28 @@ class Talking extends Phaser.Scene {
         this.dialog = this.cache.json.get('dialog')
         //console.log(this.dialog)
 
+        // ready the character dialog images offscreen
+        this.bottom = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'bottom')
+        this.bottom.speakerXOffset = 200
+        this.quince = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'quince')
+        this.quince.speakerXOffset = 120
+        this.snout = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'snout')
+        this.snout.speakerXOffset = 140
+        this.starveling = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'starveling')
+        this.starveling.speakerXOffset = 600
+        this.theseus = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'theseus')
+        this.theseus.speakerXOffset = 600
+        this.lysander = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'lysander')
+        this.lysander.speakerXOffset = 120
+        this.philostrate = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'philostrate')
+        this.philostrate.speakerXOffset = 160
+
         // add dialog box sprite
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0)
 
         // initialize dialog text objects (with no text)
         this.dialogText = this.add.bitmapText(this.TEXT_X, this.TEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
         this.nextText = this.add.bitmapText(this.NEXT_X, this.NEXT_Y, this.DBOX_FONT, '', this.TEXT_SIZE)
-
-        // ready the character dialog images offscreen
-        this.homer = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'homer').setOrigin(0, 1)
-        this.minerva = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'minerva').setOrigin(0, 1)
-        this.neptune = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'neptune').setOrigin(0, 1)
-        this.jove = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'jove').setOrigin(0, 1)
 
         // input
         cursors = this.input.keyboard.createCursorKeys()
@@ -85,7 +95,7 @@ class Talking extends Phaser.Scene {
                 3. an (optional) flag indicating if this speaker is new
         */
 
-        // make sure there are lines left to read in this convo, otherwise jump to next convo
+        // make sure there are lines left to read in this conversation, otherwise jump to next conversation
         if(this.dialogLine > this.dialog[this.dialogConvo].length - 1) {
             this.dialogLine = 0
             // I increment the conversation count here...
@@ -98,7 +108,8 @@ class Talking extends Phaser.Scene {
             // here I'm exiting the final conversation to return to the title...
             // ...but you could add alternate logic if needed
             console.log('End of Conversations')
-            // tween out prior speaker's image
+            
+            // tween out prior speaker's image and return to title screen
             if(this.dialogLastSpeaker) {
                 this.tweens.add({
                     targets: this[this.dialogLastSpeaker],
@@ -106,16 +117,15 @@ class Talking extends Phaser.Scene {
                     duration: this.tweenDuration,
                     ease: 'Linear',
                     onComplete: () => {
+                        this.dialogbox.visible = false
                         this.scene.start('titleScene')
                     }
                 })
             }
-            // make text box invisible
-            this.dialogbox.visible = false
-
         } else {
-            // if not, set current speaker
+            // ...if we still have conversations left, set current speaker
             this.dialogSpeaker = this.dialog[this.dialogConvo][this.dialogLine]['speaker']
+            
             // check if there's a new speaker (for exit/enter animations)
             if(this.dialog[this.dialogConvo][this.dialogLine]['newSpeaker']) {
                 // tween out prior speaker's image
@@ -130,7 +140,7 @@ class Talking extends Phaser.Scene {
                 // tween in new speaker's image
                 this.tweens.add({
                     targets: this[this.dialogSpeaker],
-                    x: this.DBOX_X + 50,
+                    x: this.DBOX_X + this[this.dialogSpeaker].speakerXOffset,
                     duration: this.tweenDuration,
                     ease: 'Linear'
                 })

@@ -12,10 +12,13 @@ class Title extends Phaser.Scene {
 
         // load images
         this.load.image('dialogbox', 'img/dialogbox.png')
-        this.load.image('homer', 'img/homer.png')
-        this.load.image('minerva', 'img/minerva.png')
-        this.load.image('jove', 'img/jove.png')
-        this.load.image('neptune', 'img/neptune.png')
+        this.load.image('bottom', 'img/bottom.png')
+        this.load.image('quince', 'img/quince.png')
+        this.load.image('snout', 'img/snout.png')
+        this.load.image('starveling', 'img/starveling.png')
+        this.load.image('theseus', 'img/theseus.png')
+        this.load.image('lysander', 'img/lysander.png')
+        this.load.image('philostrate', 'img/philostrate.png')
 
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
@@ -23,8 +26,8 @@ class Title extends Phaser.Scene {
 
     create() {
         // add title text
-        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'THE ODYSSEY', 32).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY, 'gem_font', 'Press SPACE to start', 16).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'A MIDSUMMER NIGHT\'S DREAM', 32).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY + 16, 'gem_font', 'Press SPACE to start', 24).setOrigin(0.5)
 
         // create input
         cursors = this.input.keyboard.createCursorKeys()
