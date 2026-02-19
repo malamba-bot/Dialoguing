@@ -7,7 +7,7 @@ class Talking extends Phaser.Scene {
         // dialog constants
         this.DBOX_X = 0			        // dialog box x-position
         this.DBOX_Y = 400			    // dialog box y-position
-        this.DBOX_FONT = 'gem_font'	    // dialog box font key 
+        this.DBOX_FONT = 'typewriter'	    // dialog box font key 
 
         this.TEXT_X = 50			    // text w/in dialog box x-position
         this.TEXT_Y = 445			    // text w/in dialog box y-position
@@ -56,6 +56,8 @@ class Talking extends Phaser.Scene {
         this.lysander.speakerXOffset = 120
         this.philostrate = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y+8, 'philostrate')
         this.philostrate.speakerXOffset = 160
+        this.mugen = this.add.sprite(this.OFFSCREEN_X, this.DBOX_Y-100, 'mugen')
+        this.mugen.speakerXOffset = 160
 
         // add dialog box sprite
         this.dialogbox = this.add.sprite(this.DBOX_X, this.DBOX_Y, 'dialogbox').setOrigin(0)

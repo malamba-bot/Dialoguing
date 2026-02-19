@@ -19,15 +19,17 @@ class Title extends Phaser.Scene {
         this.load.image('theseus', 'img/theseus.png')
         this.load.image('lysander', 'img/lysander.png')
         this.load.image('philostrate', 'img/philostrate.png')
+        this.load.image('mugen', 'img/mugen.webp')
 
         // load bitmap font
         this.load.bitmapFont('gem_font', 'font/gem.png', 'font/gem.xml')
+        this.load.bitmapFont('typewriter', 'font/typewriter.png', 'font/typewriter.xml')
     }
 
     create() {
         // add title text
-        this.add.bitmapText(centerX, centerY - 32, 'gem_font', 'A MIDSUMMER NIGHT\'S DREAM', 32).setOrigin(0.5)
-        this.add.bitmapText(centerX, centerY + 16, 'gem_font', 'Press SPACE to start', 24).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY - 32, 'typewriter', 'A MIDSUMMER NIGHT\'S DREAM', 32).setOrigin(0.5)
+        this.add.bitmapText(centerX, centerY + 16, 'typewriter', 'Press SPACE to start', 24).setOrigin(0.5)
 
         // create input
         cursors = this.input.keyboard.createCursorKeys()
